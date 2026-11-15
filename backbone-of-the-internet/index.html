@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Backbone of the Internet — Articles by Rachit Mudaliar</title>
+<meta name="description" content="How a message travels from New York to Tokyo in less than a second, through radio waves, glass and the floor of the Pacific Ocean.">
+<meta name="author" content="Rachit Ratnam Mudaliar">
+<meta property="og:type" content="article">
+<meta property="og:title" content="The Backbone of the Internet">
+<meta property="og:description" content="How a message travels from New York to Tokyo in less than a second.">
+<meta property="og:url" content="https://articles.rachitmudaliar.dev/backbone-of-the-internet/">
+<meta name="theme-color" content="#ffffff">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><rect width='64' height='64' fill='%23111'/><text x='32' y='47' text-anchor='middle' font-family='Georgia,Times New Roman,serif' font-size='44' font-weight='700' fill='%23fff'>A</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800;900&family=Libre+Franklin:wght@400;500;600;700;800&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;0,8..60,700;1,8..60,400&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#121212; --ink2:#333; --muted:#5a5a5a; --line:#dfdfdf; --red:#8f1d16; --paper:#f2ecdf;
+    --head:"Playfair Display","Times New Roman",Times,Georgia,serif;
+    --body:"Source Serif 4",Georgia,"Times New Roman",Times,serif;
+    --sans:"Libre Franklin","Franklin Gothic Medium",Arial,Helvetica,sans-serif;
+  }
+  html{font-size:clamp(15px, 0.42vw + 10.5px, 27px);-webkit-text-size-adjust:100%}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:#fff;color:var(--ink);font-family:var(--body);-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+  a{color:inherit}
+
+  /* masthead */
+  .top{border-bottom:1px solid var(--ink)}
+  .top .bar{max-width:72rem;margin:0 auto;padding:.7rem 1.5rem .2rem;display:grid;grid-template-columns:1fr auto 1fr;align-items:center}
+  .top .bar a.back{font-family:var(--sans);font-size:.72rem;font-weight:600;text-decoration:none;color:var(--muted)}
+  .top .bar a.back:hover{color:var(--ink)}
+  .top .bar .site{justify-self:end;font-family:var(--sans);font-size:.7rem;color:var(--muted)}
+  .brand{font-family:var(--head);font-weight:900;font-size:2.1rem;letter-spacing:-.01em;text-decoration:none;line-height:1}
+  .sectionbar{max-width:72rem;margin:0 auto;padding:.45rem 1.5rem .5rem;text-align:center;font-family:var(--sans);font-size:.68rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+
+  /* header */
+  article{padding-bottom:3rem}
+  .head{max-width:42rem;margin:2.6rem auto 0;padding:0 1.5rem}
+  .kicker{font-family:var(--sans);font-size:.75rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--red)}
+  h1{font-family:var(--head);font-weight:800;font-size:clamp(2.2rem,4.6vw,3.4rem);line-height:1.08;letter-spacing:-.01em;margin:.55rem 0 .8rem}
+  .summary{font-family:var(--body);font-size:1.3rem;line-height:1.4;color:var(--ink2)}
+  .byline{margin-top:1.3rem;display:flex;align-items:center;gap:.8rem;font-family:var(--sans)}
+  .avatar{width:2.6rem;height:2.6rem;border-radius:50%;background:var(--ink);color:#fff;display:grid;place-items:center;font-family:var(--head);font-weight:800;font-size:1.05rem;flex:none}
+  .byline .who{font-size:.85rem;font-weight:700}
+  .byline .when{font-size:.75rem;color:var(--muted);margin-top:.15rem}
+
+  /* hero */
+  figure.hero{max-width:60rem;margin:2rem auto 0;padding:0 1.5rem}
+  figure.hero .plate{background:var(--paper);border:1px solid #cfc6b2;padding:.6rem}
+  figure.hero svg{display:block;width:100%;height:auto}
+  figcaption{font-family:var(--sans);font-size:.72rem;line-height:1.45;color:var(--muted);margin-top:.5rem}
+  figcaption .credit{text-transform:uppercase;letter-spacing:.04em;font-size:.64rem;margin-left:.3rem}
+
+  /* body */
+  .body{max-width:38rem;margin:2.2rem auto 0;padding:0 1.5rem;font-size:1.18rem;line-height:1.7}
+  .body p{margin:0 0 1.25rem}
+  .body p.lede::first-letter{font-family:var(--head);font-weight:900;float:left;font-size:3.9em;line-height:.82;padding:.05em .1em 0 0}
+  .body h2{font-family:var(--head);font-weight:800;font-size:1.65rem;line-height:1.2;margin:2.6rem 0 .9rem}
+  .body h2 .num{font-family:var(--sans);font-size:.8rem;font-weight:800;letter-spacing:.1em;color:var(--red);display:block;margin-bottom:.35rem}
+  .body strong{font-weight:700}
+
+  .stops{list-style:none;counter-reset:s;display:flex;flex-wrap:wrap;gap:.4rem;margin:0 0 1.6rem;padding:1rem 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line);font-family:var(--sans);font-size:.74rem;font-weight:600}
+  .stops li{counter-increment:s;padding:.3rem .65rem;border:1px solid var(--ink);border-radius:999px}
+  .stops li::before{content:counter(s) " · ";color:var(--red);font-weight:800}
+
+  .term{margin:1.4rem 0 1.6rem;padding:1.1rem 1.2rem;background:#f7f5f0;border-left:4px solid var(--ink)}
+  .term .lab{font-family:var(--sans);font-size:.66rem;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:var(--red)}
+  .term .w{font-family:var(--head);font-weight:800;font-size:1.35rem;margin:.15rem 0 .5rem}
+  .term dl{display:grid;grid-template-columns:auto 1fr;gap:.35rem 1rem;font-size:1.02rem;line-height:1.5}
+  .term dt{font-family:var(--sans);font-size:.7rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);padding-top:.25rem}
+  .term dd{margin:0}
+
+  figure.diagram{margin:1.6rem 0 1.8rem}
+  figure.diagram svg{width:100%;height:auto;display:block;border:1px solid var(--line);background:#fcfbf8}
+
+  blockquote.pull{margin:2rem 0;padding:1.1rem 0;border-top:3px solid var(--ink);border-bottom:1px solid var(--ink);font-family:var(--head);font-weight:700;font-size:1.55rem;line-height:1.25;text-align:center}
+
+  table{width:100%;border-collapse:collapse;margin:.6rem 0 1.4rem;font-size:.98rem;line-height:1.45}
+  th,td{text-align:left;padding:.6rem .5rem;border-bottom:1px solid var(--line);vertical-align:top}
+  th{font-family:var(--sans);font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);border-bottom:2px solid var(--ink)}
+  td:first-child{font-weight:700;white-space:nowrap}
+
+  .sources{font-size:.95rem;line-height:1.55;padding-left:1.2rem}
+  .sources li{margin-bottom:.55rem}
+  .note{margin-top:2.2rem;padding-top:1rem;border-top:1px solid var(--ink);font-style:italic;font-size:1rem;color:var(--ink2)}
+
+  footer{border-top:1px solid var(--line);margin-top:3rem;padding:1.4rem 1.5rem 2.5rem;text-align:center;font-family:var(--sans);font-size:.7rem;color:var(--muted)}
+  footer .brand{font-size:1.3rem;display:block;margin-bottom:.4rem;color:var(--ink)}
+
+  @media (max-width:680px){
+    html{font-size:16px}
+    .top .bar{grid-template-columns:1fr;justify-items:center;gap:.3rem}
+    .top .bar .site{display:none}
+    .brand{font-size:1.8rem}
+    .body{font-size:1.1rem}
+    .summary{font-size:1.15rem}
+    td:first-child{white-space:normal}
+    .term dl{grid-template-columns:1fr}
+    .term dt{padding-top:.4rem}
+  }
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="bar">
+    <a class="back" href="/">← Front Page</a>
+    <a class="brand" href="/">Articles</a>
+    <span class="site">articles.rachitmudaliar.dev</span>
+  </div>
+  <div class="sectionbar">Technology · Internet · Explained</div>
+</header>
+
+<article>
+  <div class="head">
+    <div class="kicker">The Internet, Explained</div>
+    <h1>The Backbone of the Internet</h1>
+    <p class="summary">How a message travels from New York to Tokyo in less than a second, through radio waves, glass and the floor of the Pacific Ocean.</p>
+    <div class="byline">
+      <div class="avatar">R</div>
+      <div>
+        <div class="who">By Rachit Ratnam Mudaliar</div>
+        <div class="when">Published Nov. 15, 2026 · 10 min read</div>
+      </div>
+    </div>
+  </div>
+
+  <figure class="hero">
+    <div class="plate"><svg viewBox="0 0 800 400" role="img" aria-label="Engraving-style illustration: a person in the USA sends a message from a smartphone, it travels through a submarine cable across the Pacific Ocean, and a person in Japan receives it">
+            <defs>
+              <pattern id="hatch" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(40)">
+                <line x1="0" y1="0" x2="0" y2="6" stroke="#161412" stroke-width="1.2"/>
+              </pattern>
+              <pattern id="fine" width="4" height="4" patternUnits="userSpaceOnUse" patternTransform="rotate(-45)">
+                <line x1="0" y1="0" x2="0" y2="4" stroke="#161412" stroke-width=".9"/>
+              </pattern>
+              <pattern id="xhatch" width="7" height="7" patternUnits="userSpaceOnUse" patternTransform="rotate(-35)">
+                <line x1="0" y1="0" x2="0" y2="7" stroke="#161412" stroke-width="1"/>
+                <line x1="0" y1="3.5" x2="7" y2="3.5" stroke="#161412" stroke-width=".6"/>
+              </pattern>
+              <pattern id="sea" width="40" height="12" patternUnits="userSpaceOnUse">
+                <path d="M0 6 Q10 2 20 6 T40 6" fill="none" stroke="#161412" stroke-width=".7" opacity=".45"/>
+              </pattern>
+              <pattern id="sky" width="8" height="8" patternUnits="userSpaceOnUse">
+                <circle cx="2" cy="2" r=".8" fill="#161412" opacity=".3"/>
+              </pattern>
+            </defs>
+
+            <rect width="800" height="210" fill="url(#sky)" opacity=".5"/>
+            <rect y="210" width="800" height="190" fill="url(#sea)"/>
+
+            <!-- ===== JAPAN (right) ===== -->
+            <circle cx="752" cy="62" r="24" fill="#8f1d16"/>
+            <path d="M585 205 Q650 140 688 92 L712 92 Q750 140 815 205 Z" fill="url(#fine)" stroke="#161412" stroke-width="2" stroke-linejoin="round"/>
+            <path d="M688 92 L712 92 L726 110 L716 106 L708 116 L700 106 L692 115 L684 107 L674 110 Z" fill="#f2ecdf" stroke="#161412" stroke-width="1.6" stroke-linejoin="round"/>
+            <!-- torii gate -->
+            <g fill="#8f1d16" stroke="#161412" stroke-width="1.4">
+              <path d="M712 138 Q750 132 792 138 L794 146 Q750 141 710 146 Z"/>
+              <rect x="720" y="153" width="66" height="6"/>
+              <rect x="728" y="144" width="7" height="58"/>
+              <rect x="771" y="144" width="7" height="58"/>
+            </g>
+
+            <!-- ===== USA (left) ===== -->
+            <!-- skyline -->
+            <g fill="url(#hatch)" stroke="#161412" stroke-width="1.6">
+              <rect x="120" y="140" width="22" height="62"/>
+              <rect x="144" y="118" width="18" height="84"/>
+              <path d="M146 118 L153 104 L160 118 Z"/><line x1="153" y1="104" x2="153" y2="88"/>
+              <rect x="164" y="150" width="16" height="52"/>
+            </g>
+            <!-- Statue of Liberty -->
+            <g stroke="#161412" stroke-width="1.8" stroke-linejoin="round">
+              <path d="M40 202 L46 176 L104 176 L110 202 Z" fill="url(#xhatch)"/>
+              <rect x="52" y="160" width="46" height="16" fill="url(#xhatch)"/>
+              <path d="M60 160 L90 160 L86 112 L82 98 L70 98 L64 112 Z" fill="url(#hatch)"/>
+              <rect x="58" y="114" width="9" height="18" fill="#f2ecdf" transform="rotate(-12 62 123)"/>
+              <path d="M84 104 L94 66" stroke-width="5" stroke-linecap="round" fill="none"/>
+              <rect x="90" y="58" width="9" height="9" fill="#161412"/>
+              <path d="M94.5 58 C 88 50, 96 44, 94.5 36 C 101 44, 102 52, 94.5 58 Z" fill="#8f1d16"/>
+              <circle cx="76" cy="91" r="7" fill="url(#hatch)"/>
+              <g stroke-width="1.6" stroke-linecap="round">
+                <line x1="76" y1="84" x2="76" y2="72"/><line x1="70" y1="86" x2="62" y2="77"/><line x1="82" y1="86" x2="90" y2="77"/>
+                <line x1="68" y1="90" x2="58" y2="87"/><line x1="84" y1="90" x2="94" y2="87"/>
+              </g>
+            </g>
+
+            <!-- ===== LAND, SEA, FLOOR ===== -->
+            <path d="M0 202 L196 202 L214 216 L238 300 L252 362 L0 362 Z" fill="url(#hatch)" stroke="#161412" stroke-width="2" stroke-linejoin="round"/>
+            <path d="M800 202 L604 202 L586 216 L562 300 L548 362 L800 362 Z" fill="url(#hatch)" stroke="#161412" stroke-width="2" stroke-linejoin="round"/>
+            <path d="M210 212 Q225 207 240 212 T270 212 T300 212 T330 212 T360 212 T390 212 T420 212 T450 212 T480 212 T510 212 T540 212 T570 212 T590 212" fill="none" stroke="#161412" stroke-width="1.6"/>
+            <path d="M0 400 L0 362 Q400 378 800 362 L800 400 Z" fill="url(#xhatch)" stroke="#161412" stroke-width="1.8"/>
+
+            <!-- people -->
+            <g fill="#161412" stroke="#161412" stroke-linecap="round">
+              <!-- sender, USA -->
+              <circle cx="185" cy="152" r="7"/>
+              <path d="M178 162 L192 162 L190 184 L180 184 Z"/>
+              <line x1="182" y1="184" x2="180" y2="201" stroke-width="3.5"/><line x1="188" y1="184" x2="190" y2="201" stroke-width="3.5"/>
+              <path d="M191 166 L198 160" stroke-width="3.5" fill="none"/>
+              <!-- receiver, Japan -->
+              <circle cx="618" cy="152" r="7"/>
+              <path d="M611 162 L625 162 L623 184 L613 184 Z"/>
+              <line x1="615" y1="184" x2="613" y2="201" stroke-width="3.5"/><line x1="621" y1="184" x2="623" y2="201" stroke-width="3.5"/>
+              <path d="M612 166 L605 160" stroke-width="3.5" fill="none"/>
+            </g>
+            <g stroke="#161412" stroke-width="1.4">
+              <rect x="196" y="149" width="8" height="14" rx="1.5" fill="#f2ecdf"/>
+              <rect x="599" y="149" width="8" height="14" rx="1.5" fill="#f2ecdf"/>
+            </g>
+
+            <!-- message bubbles -->
+            <g font-family="Libre Franklin,Arial,sans-serif" font-weight="700" font-size="13">
+              <path d="M208 104 H330 a8 8 0 0 1 8 8 V130 a8 8 0 0 1 -8 8 H222 L206 148 L210 138 H208 a8 8 0 0 1 -8 -8 V112 a8 8 0 0 1 8 -8 Z" fill="#f2ecdf" stroke="#161412" stroke-width="1.8"/>
+              <text x="269" y="126" text-anchor="middle" fill="#161412">Hello from the USA!</text>
+              <path d="M470 104 H592 a8 8 0 0 1 8 8 V130 a8 8 0 0 1 -8 8 H590 L594 148 L578 138 H470 a8 8 0 0 1 -8 -8 V112 a8 8 0 0 1 8 -8 Z" fill="#f2ecdf" stroke="#161412" stroke-width="1.8"/>
+              <text x="531" y="126" text-anchor="middle" fill="#8f1d16">✓ Received in Japan</text>
+            </g>
+
+            <!-- the cable -->
+            <path d="M200 206 L215 217 L239 301 L254 364 Q400 374 546 364 L561 301 L585 217 L600 206" fill="none" stroke="#8f1d16" stroke-width="3.6" stroke-linecap="round"/>
+            <path d="M200 206 L215 217 L239 301 L254 364 Q400 374 546 364 L561 301 L585 217 L600 206" fill="none" stroke="#f2ecdf" stroke-width="1.4" stroke-dasharray="3 20" stroke-linecap="round"/>
+            <g fill="#161412"><rect x="318" y="363" width="20" height="10" rx="5"/><rect x="390" y="365" width="20" height="10" rx="5"/><rect x="462" y="363" width="20" height="10" rx="5"/></g>
+
+            <!-- labels -->
+            <g font-family="Libre Franklin,Arial,sans-serif" font-weight="800" letter-spacing="2" stroke="#f2ecdf" stroke-width="5" paint-order="stroke">
+              <text x="16" y="30" font-size="20" fill="#161412" text-anchor="start" dx="120">USA</text>
+              <text x="640" y="30" font-size="20" fill="#161412" text-anchor="middle">JAPAN</text>
+              <text x="400" y="280" font-size="14" fill="#161412" text-anchor="middle" font-style="italic" font-family="Playfair Display,Georgia,serif" letter-spacing="3">PACIFIC OCEAN</text>
+              <text x="400" y="393" font-size="12" fill="#8f1d16" text-anchor="middle">SUBMARINE CABLE · ABOUT 9,000 KM</text>
+            </g>
+          </svg></div>
+    <figcaption>A message sent from a smartphone in the USA travels as light through a submarine cable on the floor of the Pacific Ocean and arrives in Japan in a fraction of a second.<span class="credit">Illustration: articles.rachitmudaliar.dev</span></figcaption>
+  </figure>
+
+  <div class="body">
+    <p class="lede">A student in New York types “Hello!” and presses Send. Less than a second later, a friend in Tokyo reads it on her phone, more than 13,000 kilometres away. It feels like magic, and most people imagine the message flying through the air, perhaps to a satellite and back.</p>
+    <p>The real answer is much more physical. Most of that journey happens through thin strands of glass: under city streets, across a whole country and, finally, along the floor of the Pacific Ocean. In this article, we follow that one message, step by step. On the way, we meet seven terms that explain how the internet really works.</p>
+
+    <ol class="stops" aria-label="The seven stops">
+      <li>Internet</li><li>Cellular network</li><li>Optical fiber</li><li>ISP</li><li>Internet backbone</li><li>Cable landing station</li><li>Submarine cable</li>
+    </ol>
+
+    <h2><span class="num">STOP 1</span>A Network of Networks</h2>
+    <p>Before we follow the message, we need to understand where it travels. The internet is not one giant computer, and no single company owns it. It is millions of separate networks — home Wi-Fi networks, university networks, mobile operators, cloud companies — all connected to each other and all using the same rules to exchange data.</p>
+    <p>Because these networks agree on how to pass data along, a message can start on one network and finish on another, on the other side of the world.</p>
+    <div class="term">
+      <div class="lab">Key term</div>
+      <div class="w">Internet</div>
+      <dl>
+        <dt>Meaning</dt><dd>A global network of networks that connects billions of devices around the world.</dd>
+        <dt>In a sentence</dt><dd>Without the <strong>internet</strong>, a message from New York could never reach Tokyo in less than a second.</dd>
+      </dl>
+    </div>
+
+    <h2><span class="num">STOP 2</span>From the Phone to the Tower</h2>
+    <p>When the student presses Send, the message leaves the phone without any cable. The phone turns it into radio waves and sends it to the nearest mobile tower, which may be only a few hundred metres away.</p>
+    <p>Mobile operators divide cities and countries into many small areas called cells. Each cell is served by its own tower. When you walk or travel, your phone moves from one cell to the next, and the network hands your connection over from tower to tower, so your call or message is not interrupted.</p>
+    <div class="term">
+      <div class="lab">Key term</div>
+      <div class="w">Cellular network</div>
+      <dl>
+        <dt>Meaning</dt><dd>A mobile network divided into small areas called cells, each served by its own tower.</dd>
+        <dt>In a sentence</dt><dd>Without a <strong>cellular network</strong>, your phone would never be able to send or receive messages or make calls.</dd>
+      </dl>
+    </div>
+
+    <h2><span class="num">STOP 3</span>The Wireless Part Is Very Short</h2>
+    <p>Here is the first surprise. The wireless part of the journey is only the short distance between the phone and the tower. From the tower onward, the message travels through cables, and those cables are made of glass.</p>
+    <p>Older networks used copper wires and sent data as electrical signals. Today, long-distance internet traffic travels as light through optical fiber. Light inside glass moves at about 200,000 kilometres per second, loses very little strength over long distances and is not disturbed by electrical interference. One fiber can even carry many colours of light at the same time, each colour with its own stream of data.</p>
+    <div class="term">
+      <div class="lab">Key term</div>
+      <div class="w">Optical fiber</div>
+      <dl>
+        <dt>Meaning</dt><dd>A glass strand about as thin as a human hair that carries data as pulses of light.</dd>
+        <dt>In a sentence</dt><dd>Without <strong>optical fiber</strong>, the internet could never carry so much data so fast over such long distances.</dd>
+      </dl>
+    </div>
+
+    <h2><span class="num">STOP 4</span>The Company That Connects You</h2>
+    <p>The fiber from the tower leads into the network of the student’s mobile operator. This company is her internet service provider. Every message she sends, and every website she opens, passes through its network first.</p>
+    <p>The provider reads the message’s destination and sees that it must go to Japan. No single provider has cables everywhere, so providers connect with each other at special buildings called internet exchange points, where networks meet and pass traffic directly from one to another.</p>
+    <div class="term">
+      <div class="lab">Key term</div>
+      <div class="w">ISP (Internet Service Provider)</div>
+      <dl>
+        <dt>Meaning</dt><dd>The company that connects your phone or home to the internet.</dd>
+        <dt>In a sentence</dt><dd>Without an <strong>ISP</strong>, your phone would have no connection to the rest of the internet.</dd>
+      </dl>
+    </div>
+
+    <blockquote class="pull">The internet is not in the clouds. It is in glass, under our streets and on the ocean floor.</blockquote>
+
+    <h2><span class="num">STOP 5</span>Across the Country, Underground</h2>
+    <p>Now the message must cross the United States, from New York to the West Coast. It travels through the internet backbone: bundles of very high-capacity fiber cables buried along roads, railways and pipelines. Powerful machines called core routers sit along the way. Like traffic police at a busy crossing, they read each piece of data and send it in the right direction.</p>
+    <p>The distance is about 4,000 kilometres. For light in glass, that takes only about 20 milliseconds, less than the blink of an eye. And if one cable is damaged, the routers automatically find another path.</p>
+    <div class="term">
+      <div class="lab">Key term</div>
+      <div class="w">Internet backbone</div>
+      <dl>
+        <dt>Meaning</dt><dd>High-capacity fiber cables, often buried underground, that connect cities and countries.</dd>
+        <dt>In a sentence</dt><dd>Buried under roads and railways, the <strong>internet backbone</strong> carries the message across the USA in about 20 milliseconds.</dd>
+      </dl>
+    </div>
+
+    <h2><span class="num">STOP 6</span>Where the Land Ends</h2>
+    <p>On the Pacific coast, the land network ends. To reach Japan, the message must now go into the sea. The place where this happens is a quiet, secure building near the beach: a cable landing station.</p>
+    <p>Here, the cable from the ocean comes ashore and is connected to the networks on land. The station also sends electricity into the submarine cable, because the equipment inside the cable on the ocean floor needs power to work.</p>
+    <div class="term">
+      <div class="lab">Key term</div>
+      <div class="w">Cable landing station</div>
+      <dl>
+        <dt>Meaning</dt><dd>A building on the coast where a submarine cable comes out of the sea and connects to networks on land.</dd>
+        <dt>In a sentence</dt><dd>At the <strong>cable landing station</strong>, the message leaves the land network and enters the sea.</dd>
+      </dl>
+    </div>
+
+    <h2><span class="num">STOP 7</span>The Floor of the Pacific Ocean</h2>
+    <p>This is the most surprising part of the journey. The message does not go up to a satellite. It goes down, to the bottom of the ocean. A submarine cable carries it about 9,000 kilometres across the Pacific, lying on the sea floor, sometimes thousands of metres deep.</p>
+    <p>Near the coast, these cables are protected with thick steel armour against ship anchors and fishing nets. In the deep ocean, a cable is only about as thick as a garden hose. Inside are the optical fibers that carry the light, and along the cable there are devices called repeaters, which make the light signal strong again so it can cross the whole ocean.</p>
+    <p>According to the International Telecommunication Union, more than 99% of international data travels through submarine cables. TeleGeography, a research company that maps them, counts more than 600 cable systems in service around the world. Satellites are useful for ships, planes and remote areas, but they carry only a small part of international traffic.</p>
+    <div class="term">
+      <div class="lab">Key term</div>
+      <div class="w">Submarine cable</div>
+      <dl>
+        <dt>Meaning</dt><dd>A fiber-optic cable laid on the ocean floor that connects continents.</dd>
+        <dt>In a sentence</dt><dd>Without <strong>submarine cables</strong>, more than 99% of international data would have no way to cross the oceans.</dd>
+      </dl>
+    </div>
+
+    <h2><span class="num">THE FULL CIRCLE</span>The Same Journey, in Reverse</h2>
+    <p>When the cable reaches Japan, the journey repeats in reverse. The message comes ashore at a cable landing station, travels through the Japanese internet backbone to the friend’s ISP, then through optical fiber to a tower near her home. Finally, radio waves carry it the last few hundred metres to her phone.</p>
+    <figure class="diagram">
+      <svg viewBox="0 0 800 380" role="img" aria-label="The full circle: in the USA, phone, cellular network, optical fiber, ISP, backbone, landing station; submarine cable across the Pacific; in Japan, landing station, backbone, ISP, optical fiber, cellular network, phone">
+        <defs>
+          <marker id="ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 Z" fill="#121212"/></marker><marker id="ar2" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="14" markerHeight="14" markerUnits="userSpaceOnUse" orient="auto"><path d="M0 0 L10 5 L0 10 Z" fill="#8f1d16"/></marker>
+        </defs>
+        <g font-family="Libre Franklin,Arial,sans-serif" font-weight="800" font-size="13" letter-spacing="1.5" fill="#5a5a5a">
+          <text x="24" y="34">USA · NEW YORK → WEST COAST</text>
+          <text x="24" y="364">JAPAN · COAST → TOKYO</text>
+        </g>
+        <g fill="none" stroke="#121212" stroke-width="2" marker-end="url(#ar)">
+          <line x1="132" y1="88" x2="158" y2="88"/><line x1="272" y1="88" x2="298" y2="88"/><line x1="412" y1="88" x2="438" y2="88"/><line x1="552" y1="88" x2="578" y2="88"/>
+          <line x1="578" y1="292" x2="552" y2="292"/><line x1="438" y1="292" x2="412" y2="292"/><line x1="298" y1="292" x2="272" y2="292"/><line x1="158" y1="292" x2="132" y2="292"/>
+        </g>
+        <path d="M700 118 C 740 145, 660 170, 700 190 S 740 235, 700 260" fill="none" stroke="#8f1d16" stroke-width="4" stroke-linecap="round" marker-end="url(#ar2)"/>
+        <g font-family="Libre Franklin,Arial,sans-serif" font-weight="800" font-size="12" fill="#8f1d16" letter-spacing="1">
+          <text x="655" y="186" text-anchor="end">SUBMARINE CABLE</text><text x="655" y="202" text-anchor="end">PACIFIC OCEAN · ~9,000 KM</text>
+        </g>
+        <g font-family="Libre Franklin,Arial,sans-serif" font-size="13" font-weight="700" text-anchor="middle" fill="#121212">
+          <g stroke="#121212" stroke-width="2" fill="#fff">
+            <rect x="20" y="62" width="110" height="52" rx="8"/><rect x="160" y="62" width="110" height="52" rx="8"/><rect x="300" y="62" width="110" height="52" rx="8"/><rect x="440" y="62" width="110" height="52" rx="8"/><rect x="580" y="62" width="200" height="52" rx="8" stroke="#8f1d16"/>
+            <rect x="20" y="266" width="110" height="52" rx="8"/><rect x="160" y="266" width="110" height="52" rx="8"/><rect x="300" y="266" width="110" height="52" rx="8"/><rect x="440" y="266" width="110" height="52" rx="8"/><rect x="580" y="266" width="200" height="52" rx="8" stroke="#8f1d16"/>
+          </g>
+          <text x="75" y="85">Phone</text><text x="75" y="102" font-weight="500" font-size="11">sender</text>
+          <text x="215" y="85">Cell tower</text><text x="215" y="102" font-weight="500" font-size="11">cellular network</text>
+          <text x="355" y="85">ISP</text><text x="355" y="102" font-weight="500" font-size="11">via optical fiber</text>
+          <text x="495" y="85">Backbone</text><text x="495" y="102" font-weight="500" font-size="11">underground fiber</text>
+          <text x="680" y="85">Cable landing station</text><text x="680" y="102" font-weight="500" font-size="11">USA coast</text>
+          <text x="680" y="289">Cable landing station</text><text x="680" y="306" font-weight="500" font-size="11">Japan coast</text>
+          <text x="495" y="289">Backbone</text><text x="495" y="306" font-weight="500" font-size="11">underground fiber</text>
+          <text x="355" y="289">ISP</text><text x="355" y="306" font-weight="500" font-size="11">via optical fiber</text>
+          <text x="215" y="289">Cell tower</text><text x="215" y="306" font-weight="500" font-size="11">cellular network</text>
+          <text x="75" y="289">Phone</text><text x="75" y="306" font-weight="500" font-size="11">receiver</text>
+        </g>
+        <g font-family="Source Serif 4,Georgia,serif" font-style="italic" font-size="15" fill="#333" text-anchor="middle">
+          <text x="260" y="194">More than 13,000 km in less than a tenth of a second</text>
+        </g>
+      </svg>
+      <figcaption>The full journey: the same chain of networks on both sides of the ocean, joined by a submarine cable.</figcaption>
+    </figure>
+    <p>In total, the message travels more than 13,000 kilometres. Light in glass covers that distance in less than a tenth of a second. That is why the friend in Tokyo sees “Hello!” almost at the same moment it was sent.</p>
+
+    <h2>What About Starlink?</h2>
+    <p>You may be asking: what about satellites? Today the best-known satellite internet service is Starlink, run by the American company SpaceX. Instead of a few large satellites far away, Starlink uses thousands of small satellites in low Earth orbit, only a few hundred kilometres above the ground. According to the satellite tracker KeepTrack, more than 11,000 Starlink satellites were in orbit in October 2026.</p>
+    <p>A Starlink user has a small dish that sends signals up to the nearest satellite. The satellite passes the data to a ground station, and some satellites also pass data to each other using lasers. This makes Starlink very useful where cables cannot reach: on ships and planes, in remote villages and after natural disasters.</p>
+    <p>But Starlink does not replace the cables. A satellite network can carry only a small fraction of the data that fiber carries, and its ground stations are themselves connected to the same fiber backbone described in this article. For traffic between continents, the ocean floor is still the main road.</p>
+
+    <h2>Who Owns the Cables?</h2>
+    <p>For most of the twentieth century, international cables were paid for by groups of telephone and telecom companies. Each company paid part of the cost and received a share of the cable’s capacity.</p>
+    <p>Today, the biggest new investors are technology companies. According to TeleGeography, content providers such as Google, Meta, Microsoft and Amazon are now major investors in new cables, and its list of cables in which these companies have invested has grown to more than 60. Their services, from video streaming to cloud computing, send so much data between continents that owning cables makes sense for them. Google, for example, fully owns several cables, including Curie, Dunant and Grace Hopper.</p>
+    <p>Building the cables is a job for only a few specialist companies, such as SubCom in the USA, Alcatel Submarine Networks in France and NEC in Japan. They manufacture the cable and the repeaters, and special cable ships lay them slowly across the ocean floor. Because so much of the world’s communication depends on these cables, governments also treat them as critical infrastructure that must be protected.</p>
+
+    <h2>Conclusion: The Internet Is Not Just Air</h2>
+    <p>We often imagine the internet as something wireless, floating in the air around us. In reality, the wireless part is only the first and the last few hundred metres of the journey. Everything in between is tonnes of physical infrastructure: cell towers, millions of kilometres of glass fiber, cables under our streets, quiet buildings on the coast, cable ships and hundreds of cables on the ocean floor, built and repaired by engineers and paid for by companies around the world.</p>
+    <p>So the next time you press Send, remember: your words travel as light, through glass, across the sea.</p>
+
+    <h2>The Seven Terms</h2>
+    <table>
+      <thead><tr><th>Term</th><th>Meaning</th></tr></thead>
+      <tbody>
+        <tr><td>Internet</td><td>A global network of networks that connects billions of devices.</td></tr>
+        <tr><td>Cellular network</td><td>A mobile network divided into cells, each served by its own tower.</td></tr>
+        <tr><td>Optical fiber</td><td>A hair-thin glass strand that carries data as pulses of light.</td></tr>
+        <tr><td>ISP</td><td>The company that connects your phone or home to the internet.</td></tr>
+        <tr><td>Internet backbone</td><td>High-capacity fiber cables, often underground, connecting cities and countries.</td></tr>
+        <tr><td>Cable landing station</td><td>A coastal building where a submarine cable connects to land networks.</td></tr>
+        <tr><td>Submarine cable</td><td>A fiber-optic cable on the ocean floor that connects continents.</td></tr>
+      </tbody>
+    </table>
+
+    <h2>Sources</h2>
+    <ol class="sources">
+      <li>TeleGeography. <em>Submarine Cable Frequently Asked Questions.</em> <a href="https://www2.telegeography.com/submarine-cable-faqs-frequently-asked-questions">www2.telegeography.com</a></li>
+      <li>TeleGeography. <em>Submarine Cable Map.</em> <a href="https://www.submarinecablemap.com">submarinecablemap.com</a></li>
+      <li>Amazon Web Services. <em>What Is a Real-Time Internet Backbone?</em> <a href="https://aws.amazon.com/what-is/real-time-internet-backbone/">aws.amazon.com</a></li>
+      <li>The Pew Charitable Trusts (2022). <em>How Does the Internet Work and What Are the Implications for Broadband Policy?</em> <a href="https://www.pewtrusts.org/en/research-and-analysis/fact-sheets/2022/07/how-does-the-internet-work-and-what-are-the-implications-for-broadband-policy">pewtrusts.org</a></li>
+      <li>ipfyi. <em>Internet Backbone Architecture.</em> <a href="https://ipfyi.com/guides/internet-infrastructure/internet-backbone-architecture/">ipfyi.com</a></li>
+      <li>International Telecommunication Union (2025), share of international data carried by submarine cables, as summarised in <a href="https://voxbooster.com/blog/submarine-fiber-bandwidth-growth-statistics-2026">Voxbooster, Submarine Fiber Statistics 2026</a>.</li>
+      <li>TeleGeography (2026). <em>A (Refreshed) List of Content Providers’ Submarine Cable Holdings.</em> <a href="https://resources.telegeography.com/telegeography-content-providers-submarine-cable-holdings-list-new">resources.telegeography.com</a></li>
+      <li>KeepTrack (2026). <em>How Many Satellites Does SpaceX Have?</em> <a href="https://keeptrack.space/live-count/how-many-satellites-does-spacex-have">keeptrack.space</a></li>
+      <li>MarketsandMarkets (2025). <em>Submarine Cable Systems Companies.</em> <a href="https://www.marketsandmarkets.com/ResearchInsight/submarine-cable-system-market.asp">marketsandmarkets.com</a></li>
+    </ol>
+
+    <p class="note">Rachit Ratnam Mudaliar is a Software Systems student at Kauno Kolegija in Kaunas, Lithuania, and a freelance app developer. This article was written with AI assistance and is based on the sources listed above.</p>
+  </div>
+</article>
+
+<footer>
+  <a class="brand" href="/" style="text-decoration:none">Articles</a>
+  Technology, explained simply · articles.rachitmudaliar.dev · © 2026 Rachit Ratnam Mudaliar
+</footer>
+
+</body>
+</html>
