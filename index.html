@@ -174,10 +174,13 @@
 
       <figure>
         <div class="plate">
-          <svg viewBox="0 0 800 400" role="img" aria-label="Engraving-style illustration of a submarine cable crossing the ocean floor between two continents">
+          <svg viewBox="0 0 800 400" role="img" aria-label="Engraving-style illustration: a person in the USA sends a message from a smartphone, it travels through a submarine cable across the Pacific Ocean, and a person in Japan receives it">
             <defs>
               <pattern id="hatch" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(40)">
                 <line x1="0" y1="0" x2="0" y2="6" stroke="#161412" stroke-width="1.2"/>
+              </pattern>
+              <pattern id="fine" width="4" height="4" patternUnits="userSpaceOnUse" patternTransform="rotate(-45)">
+                <line x1="0" y1="0" x2="0" y2="4" stroke="#161412" stroke-width=".9"/>
               </pattern>
               <pattern id="xhatch" width="7" height="7" patternUnits="userSpaceOnUse" patternTransform="rotate(-35)">
                 <line x1="0" y1="0" x2="0" y2="7" stroke="#161412" stroke-width="1"/>
@@ -187,66 +190,96 @@
                 <path d="M0 6 Q10 2 20 6 T40 6" fill="none" stroke="#161412" stroke-width=".7" opacity=".45"/>
               </pattern>
               <pattern id="sky" width="8" height="8" patternUnits="userSpaceOnUse">
-                <circle cx="2" cy="2" r=".8" fill="#161412" opacity=".35"/>
+                <circle cx="2" cy="2" r=".8" fill="#161412" opacity=".3"/>
               </pattern>
             </defs>
 
-            <!-- sky and sea -->
-            <rect width="800" height="150" fill="url(#sky)" opacity=".5"/>
-            <rect y="150" width="800" height="250" fill="url(#sea)"/>
-            <path d="M150 150 Q170 145 190 150 T230 150 T270 150 T310 150 T350 150 T390 150 T430 150 T470 150 T510 150 T550 150 T590 150 T630 150 T650 150" fill="none" stroke="#161412" stroke-width="1.6"/>
+            <rect width="800" height="210" fill="url(#sky)" opacity=".5"/>
+            <rect y="210" width="800" height="190" fill="url(#sea)"/>
 
-            <!-- sea floor -->
-            <path d="M0 400 L0 330 C 120 335, 200 352, 300 350 S 480 344, 560 352 S 700 340, 800 332 L800 400 Z" fill="url(#xhatch)" stroke="#161412" stroke-width="1.8"/>
-
-            <!-- left continent -->
-            <path d="M0 115 L95 112 L120 118 L150 150 L168 205 L190 262 L212 312 L222 338 L0 338 Z" fill="url(#hatch)" stroke="#161412" stroke-width="2" stroke-linejoin="round"/>
-            <!-- right continent -->
-            <path d="M800 112 L705 110 L680 117 L650 150 L632 205 L610 262 L590 312 L578 342 L800 342 Z" fill="url(#hatch)" stroke="#161412" stroke-width="2" stroke-linejoin="round"/>
-
-            <!-- landing stations -->
-            <g fill="#f2ecdf" stroke="#161412" stroke-width="2">
-              <rect x="38" y="80" width="54" height="33"/><path d="M34 82 L65 62 L96 82 Z"/>
-              <rect x="708" y="78" width="54" height="33"/><path d="M704 80 L735 60 L766 80 Z"/>
+            <!-- ===== JAPAN (right) ===== -->
+            <circle cx="752" cy="62" r="24" fill="#8f1d16"/>
+            <path d="M585 205 Q650 140 688 92 L712 92 Q750 140 815 205 Z" fill="url(#fine)" stroke="#161412" stroke-width="2" stroke-linejoin="round"/>
+            <path d="M688 92 L712 92 L726 110 L716 106 L708 116 L700 106 L692 115 L684 107 L674 110 Z" fill="#f2ecdf" stroke="#161412" stroke-width="1.6" stroke-linejoin="round"/>
+            <!-- torii gate -->
+            <g fill="#8f1d16" stroke="#161412" stroke-width="1.4">
+              <path d="M712 138 Q750 132 792 138 L794 146 Q750 141 710 146 Z"/>
+              <rect x="720" y="153" width="66" height="6"/>
+              <rect x="728" y="144" width="7" height="58"/>
+              <rect x="771" y="144" width="7" height="58"/>
             </g>
-            <g fill="#161412"><rect x="58" y="96" width="12" height="17"/><rect x="728" y="94" width="12" height="17"/></g>
 
-            <!-- cable ship -->
-            <g stroke="#161412" stroke-width="2" fill="#f2ecdf">
-              <path d="M300 148 L395 148 L385 162 L310 162 Z"/>
-              <rect x="325" y="130" width="34" height="18"/>
-              <line x1="372" y1="148" x2="372" y2="112"/>
-              <line x1="372" y1="114" x2="392" y2="140"/>
+            <!-- ===== USA (left) ===== -->
+            <!-- skyline -->
+            <g fill="url(#hatch)" stroke="#161412" stroke-width="1.6">
+              <rect x="120" y="140" width="22" height="62"/>
+              <rect x="144" y="118" width="18" height="84"/>
+              <path d="M146 118 L153 104 L160 118 Z"/><line x1="153" y1="104" x2="153" y2="88"/>
+              <rect x="164" y="150" width="16" height="52"/>
+            </g>
+            <!-- Statue of Liberty -->
+            <g stroke="#161412" stroke-width="1.8" stroke-linejoin="round">
+              <path d="M40 202 L46 176 L104 176 L110 202 Z" fill="url(#xhatch)"/>
+              <rect x="52" y="160" width="46" height="16" fill="url(#xhatch)"/>
+              <path d="M60 160 L90 160 L86 112 L82 98 L70 98 L64 112 Z" fill="url(#hatch)"/>
+              <rect x="58" y="114" width="9" height="18" fill="#f2ecdf" transform="rotate(-12 62 123)"/>
+              <path d="M84 104 L94 66" stroke-width="5" stroke-linecap="round" fill="none"/>
+              <rect x="90" y="58" width="9" height="9" fill="#161412"/>
+              <path d="M94.5 58 C 88 50, 96 44, 94.5 36 C 101 44, 102 52, 94.5 58 Z" fill="#8f1d16"/>
+              <circle cx="76" cy="91" r="7" fill="url(#hatch)"/>
+              <g stroke-width="1.6" stroke-linecap="round">
+                <line x1="76" y1="84" x2="76" y2="72"/><line x1="70" y1="86" x2="62" y2="77"/><line x1="82" y1="86" x2="90" y2="77"/>
+                <line x1="68" y1="90" x2="58" y2="87"/><line x1="84" y1="90" x2="94" y2="87"/>
+              </g>
+            </g>
+
+            <!-- ===== LAND, SEA, FLOOR ===== -->
+            <path d="M0 202 L196 202 L214 216 L238 300 L252 362 L0 362 Z" fill="url(#hatch)" stroke="#161412" stroke-width="2" stroke-linejoin="round"/>
+            <path d="M800 202 L604 202 L586 216 L562 300 L548 362 L800 362 Z" fill="url(#hatch)" stroke="#161412" stroke-width="2" stroke-linejoin="round"/>
+            <path d="M210 212 Q225 207 240 212 T270 212 T300 212 T330 212 T360 212 T390 212 T420 212 T450 212 T480 212 T510 212 T540 212 T570 212 T590 212" fill="none" stroke="#161412" stroke-width="1.6"/>
+            <path d="M0 400 L0 362 Q400 378 800 362 L800 400 Z" fill="url(#xhatch)" stroke="#161412" stroke-width="1.8"/>
+
+            <!-- people -->
+            <g fill="#161412" stroke="#161412" stroke-linecap="round">
+              <!-- sender, USA -->
+              <circle cx="185" cy="152" r="7"/>
+              <path d="M178 162 L192 162 L190 184 L180 184 Z"/>
+              <line x1="182" y1="184" x2="180" y2="201" stroke-width="3.5"/><line x1="188" y1="184" x2="190" y2="201" stroke-width="3.5"/>
+              <path d="M191 166 L198 160" stroke-width="3.5" fill="none"/>
+              <!-- receiver, Japan -->
+              <circle cx="618" cy="152" r="7"/>
+              <path d="M611 162 L625 162 L623 184 L613 184 Z"/>
+              <line x1="615" y1="184" x2="613" y2="201" stroke-width="3.5"/><line x1="621" y1="184" x2="623" y2="201" stroke-width="3.5"/>
+              <path d="M612 166 L605 160" stroke-width="3.5" fill="none"/>
+            </g>
+            <g stroke="#161412" stroke-width="1.4">
+              <rect x="196" y="149" width="8" height="14" rx="1.5" fill="#f2ecdf"/>
+              <rect x="599" y="149" width="8" height="14" rx="1.5" fill="#f2ecdf"/>
+            </g>
+
+            <!-- message bubbles -->
+            <g font-family="Libre Franklin,Arial,sans-serif" font-weight="700" font-size="13">
+              <path d="M208 104 H330 a8 8 0 0 1 8 8 V130 a8 8 0 0 1 -8 8 H222 L206 148 L210 138 H208 a8 8 0 0 1 -8 -8 V112 a8 8 0 0 1 8 -8 Z" fill="#f2ecdf" stroke="#161412" stroke-width="1.8"/>
+              <text x="269" y="126" text-anchor="middle" fill="#161412">Hello from the USA!</text>
+              <path d="M470 104 H592 a8 8 0 0 1 8 8 V130 a8 8 0 0 1 -8 8 H590 L594 148 L578 138 H470 a8 8 0 0 1 -8 -8 V112 a8 8 0 0 1 8 -8 Z" fill="#f2ecdf" stroke="#161412" stroke-width="1.8"/>
+              <text x="531" y="126" text-anchor="middle" fill="#8f1d16">✓ Received in Japan</text>
             </g>
 
             <!-- the cable -->
-            <path id="cable" d="M92 110 L118 114 L153 147 L172 203 L194 260 L216 310 L230 341 Q 300 349 400 345 T 572 345 L586 311 L606 260 L628 203 L646 147 L679 113 L708 108"
-                  fill="none" stroke="#8f1d16" stroke-width="3.4" stroke-linecap="round"/>
-            <!-- light pulses -->
-            <path d="M92 110 L118 114 L153 147 L172 203 L194 260 L216 310 L230 341 Q 300 349 400 345 T 572 345 L586 311 L606 260 L628 203 L646 147 L679 113 L708 108"
-                  fill="none" stroke="#f2ecdf" stroke-width="1.4" stroke-dasharray="3 22" stroke-linecap="round"/>
-
-            <!-- repeaters -->
-            <g fill="#161412">
-              <rect x="290" y="340" width="22" height="11" rx="5"/>
-              <rect x="420" y="338" width="22" height="11" rx="5"/>
-              <rect x="510" y="338" width="22" height="11" rx="5"/>
-            </g>
+            <path d="M200 206 L215 217 L239 301 L254 364 Q400 374 546 364 L561 301 L585 217 L600 206" fill="none" stroke="#8f1d16" stroke-width="3.6" stroke-linecap="round"/>
+            <path d="M200 206 L215 217 L239 301 L254 364 Q400 374 546 364 L561 301 L585 217 L600 206" fill="none" stroke="#f2ecdf" stroke-width="1.4" stroke-dasharray="3 20" stroke-linecap="round"/>
+            <g fill="#161412"><rect x="318" y="363" width="20" height="10" rx="5"/><rect x="390" y="365" width="20" height="10" rx="5"/><rect x="462" y="363" width="20" height="10" rx="5"/></g>
 
             <!-- labels -->
-            <g font-family="Libre Franklin,Arial,sans-serif" font-weight="700" fill="#161412" letter-spacing="1.2" stroke="#f2ecdf" stroke-width="4" paint-order="stroke">
-              <text x="16" y="40" font-size="15">CONTINENT A</text>
-              <text x="784" y="40" font-size="15" text-anchor="end">CONTINENT B</text>
-              <text x="70" y="180" font-size="11" text-anchor="middle">LANDING STATION</text>
-              <text x="730" y="180" font-size="11" text-anchor="middle">LANDING STATION</text>
-              <text x="347" y="104" font-size="11" text-anchor="middle">CABLE SHIP</text>
-              <text x="431" y="322" font-size="11" text-anchor="middle">REPEATER</text>
-              <text x="400" y="384" font-size="13" text-anchor="middle" fill="#f2ecdf" stroke="#f2ecdf" stroke-width="5" paint-order="stroke">SUBMARINE CABLE ON THE OCEAN FLOOR</text>
-              <text x="400" y="384" font-size="13" text-anchor="middle" fill="#8f1d16">SUBMARINE CABLE ON THE OCEAN FLOOR</text>
+            <g font-family="Libre Franklin,Arial,sans-serif" font-weight="800" letter-spacing="2" stroke="#f2ecdf" stroke-width="5" paint-order="stroke">
+              <text x="16" y="30" font-size="20" fill="#161412" text-anchor="start" dx="120">USA</text>
+              <text x="640" y="30" font-size="20" fill="#161412" text-anchor="middle">JAPAN</text>
+              <text x="400" y="280" font-size="14" fill="#161412" text-anchor="middle" font-style="italic" font-family="Playfair Display,Georgia,serif" letter-spacing="3">PACIFIC OCEAN</text>
+              <text x="400" y="393" font-size="12" fill="#8f1d16" text-anchor="middle">SUBMARINE CABLE · ABOUT 9,000 KM</text>
             </g>
           </svg>
         </div>
-        <figcaption><b>Illustration</b> · A submarine cable runs from a landing station on one continent, across the ocean floor, to a landing station on another. Repeaters along the way keep the light signal strong.</figcaption>
+        <figcaption><b>Illustration</b> · A message sent from a smartphone in the USA travels as light through a submarine cable on the floor of the Pacific Ocean, and arrives in Japan in a fraction of a second.</figcaption>
       </figure>
 
       <div class="cols">
