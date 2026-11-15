@@ -174,54 +174,79 @@
 
       <figure>
         <div class="plate">
-          <svg viewBox="0 0 800 380" role="img" aria-label="Engraving-style world map with undersea cable routes">
+          <svg viewBox="0 0 800 400" role="img" aria-label="Engraving-style illustration of a submarine cable crossing the ocean floor between two continents">
             <defs>
-              <pattern id="hatch" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(35)">
-                <line x1="0" y1="0" x2="0" y2="6" stroke="#161412" stroke-width="1.1"/>
+              <pattern id="hatch" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(40)">
+                <line x1="0" y1="0" x2="0" y2="6" stroke="#161412" stroke-width="1.2"/>
               </pattern>
-              <pattern id="dots" width="7" height="7" patternUnits="userSpaceOnUse">
-                <circle cx="2" cy="2" r=".9" fill="#161412" opacity=".55"/>
+              <pattern id="xhatch" width="7" height="7" patternUnits="userSpaceOnUse" patternTransform="rotate(-35)">
+                <line x1="0" y1="0" x2="0" y2="7" stroke="#161412" stroke-width="1"/>
+                <line x1="0" y1="3.5" x2="7" y2="3.5" stroke="#161412" stroke-width=".6"/>
+              </pattern>
+              <pattern id="sea" width="40" height="12" patternUnits="userSpaceOnUse">
+                <path d="M0 6 Q10 2 20 6 T40 6" fill="none" stroke="#161412" stroke-width=".7" opacity=".45"/>
+              </pattern>
+              <pattern id="sky" width="8" height="8" patternUnits="userSpaceOnUse">
+                <circle cx="2" cy="2" r=".8" fill="#161412" opacity=".35"/>
               </pattern>
             </defs>
-            <rect width="800" height="380" fill="url(#dots)" opacity=".35"/>
-            <g fill="#161412" opacity=".18" stroke="none">
-              <ellipse cx="400" cy="190" rx="370" ry="170"/>
+
+            <!-- sky and sea -->
+            <rect width="800" height="150" fill="url(#sky)" opacity=".5"/>
+            <rect y="150" width="800" height="250" fill="url(#sea)"/>
+            <path d="M150 150 Q170 145 190 150 T230 150 T270 150 T310 150 T350 150 T390 150 T430 150 T470 150 T510 150 T550 150 T590 150 T630 150 T650 150" fill="none" stroke="#161412" stroke-width="1.6"/>
+
+            <!-- sea floor -->
+            <path d="M0 400 L0 330 C 120 335, 200 352, 300 350 S 480 344, 560 352 S 700 340, 800 332 L800 400 Z" fill="url(#xhatch)" stroke="#161412" stroke-width="1.8"/>
+
+            <!-- left continent -->
+            <path d="M0 115 L95 112 L120 118 L150 150 L168 205 L190 262 L212 312 L222 338 L0 338 Z" fill="url(#hatch)" stroke="#161412" stroke-width="2" stroke-linejoin="round"/>
+            <!-- right continent -->
+            <path d="M800 112 L705 110 L680 117 L650 150 L632 205 L610 262 L590 312 L578 342 L800 342 Z" fill="url(#hatch)" stroke="#161412" stroke-width="2" stroke-linejoin="round"/>
+
+            <!-- landing stations -->
+            <g fill="#f2ecdf" stroke="#161412" stroke-width="2">
+              <rect x="38" y="80" width="54" height="33"/><path d="M34 82 L65 62 L96 82 Z"/>
+              <rect x="708" y="78" width="54" height="33"/><path d="M704 80 L735 60 L766 80 Z"/>
             </g>
-            <g fill="none" stroke="#161412" stroke-width=".8" opacity=".55">
-              <ellipse cx="400" cy="190" rx="370" ry="170"/>
-              <ellipse cx="400" cy="190" rx="270" ry="170"/>
-              <ellipse cx="400" cy="190" rx="150" ry="170"/>
-              <line x1="400" y1="20" x2="400" y2="360"/>
-              <path d="M40 190 H760 M68 110 H732 M68 270 H732 M150 55 H650 M150 325 H650"/>
+            <g fill="#161412"><rect x="58" y="96" width="12" height="17"/><rect x="728" y="94" width="12" height="17"/></g>
+
+            <!-- cable ship -->
+            <g stroke="#161412" stroke-width="2" fill="#f2ecdf">
+              <path d="M300 148 L395 148 L385 162 L310 162 Z"/>
+              <rect x="325" y="130" width="34" height="18"/>
+              <line x1="372" y1="148" x2="372" y2="112"/>
+              <line x1="372" y1="114" x2="392" y2="140"/>
             </g>
-            <!-- stylised continents -->
-            <g fill="url(#hatch)" stroke="#161412" stroke-width="1.6" stroke-linejoin="round">
-              <path d="M120 95 L205 80 L250 110 L238 150 L205 165 L190 205 L165 200 L150 160 L118 140 Z"/>
-              <path d="M205 215 L245 220 L262 255 L248 300 L228 330 L212 300 L200 255 Z"/>
-              <path d="M360 85 L420 75 L455 95 L440 120 L405 125 L380 118 L362 105 Z"/>
-              <path d="M385 140 L440 135 L470 165 L462 220 L440 270 L415 280 L400 240 L380 190 Z"/>
-              <path d="M455 85 L560 70 L640 95 L655 135 L610 160 L560 150 L540 175 L515 160 L490 130 L465 115 Z"/>
-              <path d="M520 160 L548 172 L540 205 L528 210 L515 185 Z"/>
-              <path d="M620 250 L680 245 L700 275 L670 295 L630 288 Z"/>
+
+            <!-- the cable -->
+            <path id="cable" d="M92 110 L118 114 L153 147 L172 203 L194 260 L216 310 L230 341 Q 300 349 400 345 T 572 345 L586 311 L606 260 L628 203 L646 147 L679 113 L708 108"
+                  fill="none" stroke="#8f1d16" stroke-width="3.4" stroke-linecap="round"/>
+            <!-- light pulses -->
+            <path d="M92 110 L118 114 L153 147 L172 203 L194 260 L216 310 L230 341 Q 300 349 400 345 T 572 345 L586 311 L606 260 L628 203 L646 147 L679 113 L708 108"
+                  fill="none" stroke="#f2ecdf" stroke-width="1.4" stroke-dasharray="3 22" stroke-linecap="round"/>
+
+            <!-- repeaters -->
+            <g fill="#161412">
+              <rect x="290" y="340" width="22" height="11" rx="5"/>
+              <rect x="420" y="338" width="22" height="11" rx="5"/>
+              <rect x="510" y="338" width="22" height="11" rx="5"/>
             </g>
-            <!-- cable routes -->
-            <g fill="none" stroke="#8f1d16" stroke-width="2.6" stroke-dasharray="7 5" stroke-linecap="round">
-              <path d="M410 98 C 400 130, 430 140, 452 150 S 500 170, 528 178"/>
-              <path d="M238 140 C 290 120, 330 110, 362 100"/>
-              <path d="M205 230 C 280 230, 340 215, 392 200"/>
-              <path d="M612 150 C 640 190, 650 220, 650 250"/>
-            </g>
-            <g fill="#8f1d16" stroke="#f2ecdf" stroke-width="2">
-              <circle cx="410" cy="98" r="6"/><circle cx="528" cy="178" r="6"/><circle cx="362" cy="100" r="5"/>
-              <circle cx="238" cy="140" r="5"/><circle cx="650" cy="250" r="5"/>
-            </g>
-            <g font-family="Libre Franklin,Arial,sans-serif" font-size="13" font-weight="700" fill="#161412" letter-spacing="1">
-              <text x="420" y="92">KAUNAS</text>
-              <text x="536" y="196">MUMBAI</text>
+
+            <!-- labels -->
+            <g font-family="Libre Franklin,Arial,sans-serif" font-weight="700" fill="#161412" letter-spacing="1.2" stroke="#f2ecdf" stroke-width="4" paint-order="stroke">
+              <text x="16" y="40" font-size="15">CONTINENT A</text>
+              <text x="784" y="40" font-size="15" text-anchor="end">CONTINENT B</text>
+              <text x="70" y="180" font-size="11" text-anchor="middle">LANDING STATION</text>
+              <text x="730" y="180" font-size="11" text-anchor="middle">LANDING STATION</text>
+              <text x="347" y="104" font-size="11" text-anchor="middle">CABLE SHIP</text>
+              <text x="431" y="322" font-size="11" text-anchor="middle">REPEATER</text>
+              <text x="400" y="384" font-size="13" text-anchor="middle" fill="#f2ecdf" stroke="#f2ecdf" stroke-width="5" paint-order="stroke">SUBMARINE CABLE ON THE OCEAN FLOOR</text>
+              <text x="400" y="384" font-size="13" text-anchor="middle" fill="#8f1d16">SUBMARINE CABLE ON THE OCEAN FLOOR</text>
             </g>
           </svg>
         </div>
-        <figcaption><b>Illustration</b> · Undersea cables carry most of the world’s international data. They are the subject of this publication’s first article.</figcaption>
+        <figcaption><b>Illustration</b> · A submarine cable runs from a landing station on one continent, across the ocean floor, to a landing station on another. Repeaters along the way keep the light signal strong.</figcaption>
       </figure>
 
       <div class="cols">
